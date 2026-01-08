@@ -50,7 +50,7 @@ pipeline{
             steps{
                 nexusArtifactUploader artifacts: [[artifactId: 'calculator-java', classifier: '', file: "target/calculator-java-${VERSION}.jar", type: 'jar']],
                     credentialsId: 'nexus-cred', groupId: 'com.example', nexusUrl: '52.54.112.218:32000', nexusVersion: 'nexus3', protocol: 
-                    'http', repository: 'maven-releases', version: "${VERSION}"
+                    'http', repository: 'Calculator-app', version: "${VERSION}"
             }
         }
     }
