@@ -54,7 +54,7 @@ pipeline{
             }
         }
         stage('docker image build'){
-            agent {label 'node3'}
+            agent any
             steps{
                 withCredentials([usernamePassword(credentialsId: 'nexus-cred',usernameVariable: 'NEXUS_USER',passwordVariable: 'NEXUS_PASS')])
                 {  
