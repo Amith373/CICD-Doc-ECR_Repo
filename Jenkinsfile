@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        PROJECT_KEY = "demo-project"
+        PROJECT_KEY = "my-app"
         VERSION     = "1.0-SNAPSHOT.${BUILD_NUMBER}"
-        IMAGE_NAME  = "demo-project"
+        IMAGE_NAME  = "my-app"
     }
 
     tools {
