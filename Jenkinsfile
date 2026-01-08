@@ -1,7 +1,7 @@
 pipeline{
     agent {label 'node3'}
     environment{
-        PROJECT_KEY="java-calculator-k8s"
+        PROJECT_KEY="calculator-project"
         VERSION="1.0.${env.BUILD_NUMBER}"
         IMAGE_NAME="calculator-java"
     }
@@ -48,7 +48,7 @@ pipeline{
           stage('Nexus-artifactory'){
             steps{
                 nexusArtifactUploader artifacts: [[artifactId: 'calculator-java', classifier: '', file: "target/calculator-java-${VERSION}.jar", type: 'jar']],
-                    credentialsId: 'nexus-cred', groupId: 'com.example', nexusUrl: '13.233.201.49:8081', nexusVersion: 'nexus3', protocol: 
+                    credentialsId: 'nexus-cred', groupId: 'com.example', nexusUrl: '3.110.158.102:32000', nexusVersion: 'nexus3', protocol: 
                     'http', repository: 'maven-releases', version: "${VERSION}"
             }
         }
