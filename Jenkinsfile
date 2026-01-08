@@ -85,9 +85,9 @@ pipeline{
             steps{
             withCredentials([usernamePassword(credentialsId: 'git_hub_new',usernameVariable:'GIT_USER',passwordVariable:'GIT_PASS')]){
             sh """ rm -rf calculator_deployment
-              git clone https://${GIT_USER}:${GIT_PASS}@github.com/Agasthyahm/calculator_deployment.git
+              git clone https://${GIT_USER}:${GIT_PASS}@github.com/Amith373/CICD-Doc-ECR_Repo.git
               cd calculator_deployment/k8s
-             sed -i "s|image: .*calculator-java.*|image: 429219761476.dkr.ecr.eu-north-1.amazonaws.com/calculator-java:${VERSION}|Ig" sample.yaml
+             sed -i "s|image: .*calculator-java.*|image: 316444450716.dkr.ecr.us-east-1.amazonaws.com/calculator-java:${VERSION}|Ig" sample.yaml
              git add sample.yaml
              git commit -m "updated the image" 
              git push origin main
@@ -95,5 +95,5 @@ pipeline{
             }
         }
     }
-    }
+ }
 }
