@@ -15,8 +15,7 @@ pipeline {
 
         stage('Git Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/Amith373/demo-use-repo.git'
+               git branch: 'main', url: 'https://github.com/Amith373/CICD-Doc-ECR_Repo.git'
             }
         }
 
