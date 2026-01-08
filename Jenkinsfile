@@ -53,5 +53,21 @@ pipeline{
                     'http', repository: 'Calculator-app', version: "${VERSION}"
             }
         }
+        stage('docker image build'){
+            agent {label 'node3'}
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'nexus-cred',usernameVariable: 'NEXUS_USER',passwordVariable: 'NEXUS_PASS')])
+                {  
+                    sh """
+                         docker build \
+                         --build-arg NEXUS_URL=http://52.54.112.218:32000 \
+                         --build-arg NEXUS_USER=$NEXUS_USER \
+                         --build-arg NEXUS_PASS=$NEXUS_PASS \
+                         --build-arg VERSION=${VERSION} \
+                         -t ${IMAGE_NAME}:${VERSION} .
+                     """
+                }
+           }
+        }
     }
 }
