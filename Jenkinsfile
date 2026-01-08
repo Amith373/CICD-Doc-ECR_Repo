@@ -5,7 +5,7 @@ pipeline{
     }
     environment{
         PROJECT_KEY="calculator-project"
-        VERSION="1.0.${env.BUILD_NUMBER}"
+        VERSION="1.0.9.${env.BUILD_NUMBER}"
         IMAGE_NAME="calculator-java"
     }
     stages{
