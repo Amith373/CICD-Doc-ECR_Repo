@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent {label 'node3'}
     environment{
         PROJECT_KEY="calculator-project"
         VERSION="1.0.${env.BUILD_NUMBER}"
