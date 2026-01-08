@@ -70,9 +70,8 @@ pipeline{
            }
         }
         stage('Image to ECR'){
-            agent any
             steps{
-                withAWS(credentials:'jenkins-ecr',region:'eu-north-1')
+                withAWS(credentials:'jenkins-ecr',region:'us-east-1')
                 {
                     sh """
                         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 316444450716.dkr.ecr.us-east-1.amazonaws.com
