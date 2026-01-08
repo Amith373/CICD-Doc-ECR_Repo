@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+   agent {label 'node3'}
 
     environment {
         PROJECT_KEY = "my-app"
@@ -86,7 +86,6 @@ pipeline {
             }
         }
         stage('docker image build'){
-            agent {label 'node3'}
             steps{
                 withCredentials([usernamePassword(credentialsId: 'nexus-cred',usernameVariable: 'NEXUS_USER',passwordVariable: 'NEXUS_PASS')])
                 {  
