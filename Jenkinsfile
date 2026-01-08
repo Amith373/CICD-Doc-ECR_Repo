@@ -85,5 +85,21 @@ pipeline {
                 )
             }
         }
+        stage('docker image build'){
+            agent {label 'node3'}
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'nexus-cred',usernameVariable: 'NEXUS_USER',passwordVariable: 'NEXUS_PASS')])
+                {  
+                    sh """
+                         docker build \
+                         --build-arg NEXUS_URL=http://13.233.201.49:8081 \
+                         --build-arg NEXUS_USER=$NEXUS_USER \
+                         --build-arg NEXUS_PASS=$NEXUS_PASS \
+                         --build-arg VERSION=${VERSION} \
+                         -t ${IMAGE_NAME}:${VERSION} .
+                     """
+                }
+           }
+        }
     }
 }
