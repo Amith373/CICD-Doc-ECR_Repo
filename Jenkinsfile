@@ -1,5 +1,5 @@
 pipeline{
-    agent {label 'node2'}
+    agent {label 'node3'}
     environment{
         PROJECT_KEY="java-calculator-k8s"
         VERSION="1.0.${env.BUILD_NUMBER}"
