@@ -2,9 +2,9 @@ pipeline {
    agent {label 'node3'}
 
     environment {
-        PROJECT_KEY = "my-app"
+        PROJECT_KEY = "demo-project"
         VERSION     = "1.0-SNAPSHOT.${BUILD_NUMBER}"
-        IMAGE_NAME  = "my-app"
+        IMAGE_NAME  = "demo-project"
     }
 
     tools {
