@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    tools {
+        maven 'MAVEN'
+    }
     environment{
         PROJECT_KEY="calculator-project"
         VERSION="1.0.${env.BUILD_NUMBER}"
