@@ -6,7 +6,7 @@ pipeline{
         IMAGE_NAME="calculator-java"
     }
     stages{
-        stage('SCM'){
+        stage('Checkout'){
             steps{
                 git branch: 'main', url: 'https://github.com/Amith373/CICD-Doc-ECR_Repo.git'
             }
