@@ -95,6 +95,9 @@ pipeline{
                 git clone https://${GIT_USER}:${GIT_TOKEN}@github.com/Amith373/ArgoCD-Demo-Project.git
                 cd ArgoCD-Demo-Project
                 sed -i 's|image:.*|image: ${ECR_REPO}:${VERSION}|' calculator.yaml
+                git config user.name "jenkins"
+                git config user.email "jenkins@devops.com"
+
                 git add calculator.yaml
                 git commit -m "Update image to ${VERSION}"
                 git push
