@@ -49,7 +49,7 @@ pipeline{
           stage('Nexus-artifactory'){
             steps{
                 nexusArtifactUploader artifacts: [[artifactId: 'calculator-java', classifier: '', file: "target/calculator-java-${VERSION}.jar", type: 'jar']],
-                    credentialsId: 'nexus-cred', groupId: 'com.example', nexusUrl: '52.54.112.218:32000', nexusVersion: 'nexus3', protocol: 
+                    credentialsId: 'nexus-cred', groupId: 'com.example', nexusUrl: '98.81.161.115:32000', nexusVersion: 'nexus3', protocol: 
                     'http', repository: 'Calculator-app', version: "${VERSION}"
             }
         }
@@ -60,7 +60,7 @@ pipeline{
                 {  
                     sh """
                          docker build \
-                         --build-arg NEXUS_URL=http://52.54.112.218:32000 \
+                         --build-arg NEXUS_URL=http://98.81.161.115:32000 \
                          --build-arg NEXUS_USER=$NEXUS_USER \
                          --build-arg NEXUS_PASS=$NEXUS_PASS \
                          --build-arg VERSION=${VERSION} \
