@@ -81,19 +81,31 @@ pipeline{
                 }
             }
         }
-      stage('Deploy'){
-            steps{
-            withCredentials([usernamePassword(credentialsId: 'git_hub_new',usernameVariable:'GIT_USER',passwordVariable:'GIT_PASS')]){
-            sh """ rm -rf calculator_deployment
-              git clone https://${GIT_USER}:${GIT_PASS}@github.com/Amith373/CICD-Doc-ECR_Repo.git
-              cd calculator_deployment/k8s
-             sed -i "s|image: .*calculator-java.*|image: 316444450716.dkr.ecr.us-east-1.amazonaws.com/calculator-java:${VERSION}|Ig" sample.yaml
-             git add sample.yaml
-             git commit -m "updated the image" 
-             git push origin main
-            """
+      stage('Update Image in GitRepo') {
+            steps {
+withCredentials([
+usernamePassword(
+credentialsId: 'github-creds',
+usernameVariable: 'GIT_USER',
+passwordVariable: 'GIT_TOKEN'
+                    )
+                ]) {
+sh """
+                    rm -rf calculator-java-gitops
+                    git clone https://${GIT_USER}:${GIT_TOKEN}@github.com/jayanthis952/calculator-java-gitops.git
+                    cd calculator-java-gitops
+
+                    sed -i 's|image:.*|image: ${ECR_REPO}:${VERSION}|' pod.yaml
+
+                    git config user.name "jenkins"
+                    git config user.email "jenkins@devops.com"
+
+                    git add pod.yaml
+                    git commit -m "Update image to ${VERSION}"
+                    git push
+                    """
+                }
             }
         }
     }
- }
 }
