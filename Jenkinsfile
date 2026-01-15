@@ -5,6 +5,7 @@ pipeline{
     }
     environment{
         PROJECT_KEY="calculator-project"
+        ECR_REPO = 316444450716.dkr.ecr.us-east-1.amazonaws.com/calculator-java:${VERSION}
         VERSION="v1.${env.BUILD_NUMBER}"
         IMAGE_NAME="calculator-java"
     }
